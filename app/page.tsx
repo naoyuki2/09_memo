@@ -25,7 +25,7 @@ export default function Home() {
     ]
 
     const [contents, setContents] = useState<ContentType[]>(initialContents)
-    const [activeContentId, setActiveContentId] = useState<number>(
+    const [activeContentId, setActiveContentId] = useState<number | undefined>(
         initialContents[0].id,
     )
 
@@ -33,7 +33,10 @@ export default function Home() {
         (content) => content.id === activeContentId,
     )
 
-    const updateContent = (id: number, newContent: string | undefined) => {
+    const updateContent = (
+        id: number | undefined,
+        newContent: string | undefined,
+    ) => {
         setContents(
             contents.map((content) =>
                 content.id === id
@@ -43,7 +46,10 @@ export default function Home() {
         )
     }
 
-    const updateTitle = (id: number, newTitle: string | undefined) => {
+    const updateTitle = (
+        id: number | undefined,
+        newTitle: string | undefined,
+    ) => {
         setContents(
             contents.map((content) =>
                 content.id === id ? { ...content, title: newTitle } : content,
@@ -55,28 +61,20 @@ export default function Home() {
         <div className="flex">
             <SidebarMenu
                 contents={contents}
+                activeContentId={activeContentId}
                 setActiveContentId={setActiveContentId}
                 setContents={setContents}
             />
             <div className="w-screen">
-                <div className="py-3 border-2 border-black">
-                    <span className="bg-orange-400 text-white py-3 px-">
-                        タイトル
-                    </span>
-                    <input
-                        value={activeContent?.title}
-                        onChange={(e) => {
-                            updateTitle(activeContentId, e.target.value)
-                        }}
-                        className="border-2 border-black"
-                    />
-                </div>
                 <div className="">
                     {activeContent && (
                         <Editor
-                            content={activeContent.content}
+                            activeContent={activeContent}
                             updateContent={(newContent) =>
                                 updateContent(activeContentId, newContent)
+                            }
+                            updateTitle={(newTitle) =>
+                                updateTitle(activeContentId, newTitle)
                             }
                         />
                     )}
