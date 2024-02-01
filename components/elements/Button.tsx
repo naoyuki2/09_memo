@@ -1,13 +1,13 @@
 type Props = {
-    bgColor: string
+    option: string
     content: string | undefined
     onClick: () => void
 }
 
-const Button = ({ bgColor, content, onClick }: Props) => {
+const Button = ({ option, content, onClick }: Props) => {
     return (
         <div
-            className={`shadow p-3 cursor-pointer rounded m-2 ${bgColor}`}
+            className={`shadow p-3 cursor-pointer rounded m-2 text-gray-600 hover:opacity-70 ${option}`}
             onClick={onClick}
         >
             {content}

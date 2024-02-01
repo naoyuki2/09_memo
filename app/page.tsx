@@ -9,17 +9,17 @@ export default function Home() {
     const initialContents = [
         {
             id: 1,
-            title: 'タイトル１',
+            title: 'ファイル１',
             content: 'テスト１',
         },
         {
             id: 2,
-            title: 'タイトル２',
+            title: 'ファイル２',
             content: 'テスト２',
         },
         {
             id: 3,
-            title: 'タイトル３',
+            title: 'ファイル３',
             content: 'テスト３',
         },
     ]

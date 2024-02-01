@@ -21,8 +21,8 @@ const SidebarMenu = ({
             <div className="hidden md:block sticky top-0 h-screen w-64 bg-gray-200 h-full overflow-scroll hidden-scrollbar">
                 <div className="flex flex-col gap-5">
                     <Button
-                        bgColor="bg-yellow-100"
-                        content="追加"
+                        option="bg-yellow-100 text-center text-xl"
+                        content="＋"
                         onClick={() => {
                             let newId: number
                             if (contents.length === 0) {
@@ -44,7 +44,7 @@ const SidebarMenu = ({
                         return (
                             <div key={content.id}>
                                 <Button
-                                    bgColor="bg-blue-100"
+                                    option="bg-green-100"
                                     content={content.title}
                                     onClick={() =>
                                         setActiveContentId(content.id)
