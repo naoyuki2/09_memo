@@ -1,4 +1,5 @@
 export type ContentType = {
     id: number
-    content: string
+    title: string | undefined
+    content: string | undefined
 }

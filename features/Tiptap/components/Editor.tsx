@@ -5,7 +5,7 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
 type Props = {
-    content: string
+    content: string | undefined
     updateContent: (contents: string) => void
 }
 
@@ -22,7 +22,7 @@ const Editor = ({ content, updateContent }: Props) => {
 
     useEffect(() => {
         if (editor) {
-            editor.commands.setContent(content)
+            editor.commands.setContent(content!)
             editor.on('update', () => {
                 updateContent(editor.getHTML())
             })

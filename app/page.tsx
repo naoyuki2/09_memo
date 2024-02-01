@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Editor from '../features/Tiptap/components/Editor'
-import Button from '@/components/elements/Button'
 import SidebarMenu from '@/components/layouts/SidebarMenu'
 import { ContentType } from './type'
 
@@ -10,14 +9,17 @@ export default function Home() {
     const initialContents = [
         {
             id: 1,
+            title: 'タイトル１',
             content: 'テスト１',
         },
         {
             id: 2,
+            title: 'タイトル２',
             content: 'テスト２',
         },
         {
             id: 3,
+            title: 'タイトル３',
             content: 'テスト３',
         },
     ]
@@ -31,12 +33,20 @@ export default function Home() {
         (content) => content.id === activeContentId,
     )
 
-    const updateContent = (id: number, newContent: string) => {
+    const updateContent = (id: number, newContent: string | undefined) => {
         setContents(
             contents.map((content) =>
                 content.id === id
                     ? { ...content, content: newContent }
                     : content,
+            ),
+        )
+    }
+
+    const updateTitle = (id: number, newTitle: string | undefined) => {
+        setContents(
+            contents.map((content) =>
+                content.id === id ? { ...content, title: newTitle } : content,
             ),
         )
     }
@@ -49,14 +59,28 @@ export default function Home() {
                 setContents={setContents}
             />
             <div className="w-screen">
-                {activeContent && (
-                    <Editor
-                        content={activeContent.content}
-                        updateContent={(newContent) =>
-                            updateContent(activeContentId, newContent)
-                        }
+                <div className="py-3 border-2 border-black">
+                    <span className="bg-orange-400 text-white py-3 px-">
+                        タイトル
+                    </span>
+                    <input
+                        value={activeContent?.title}
+                        onChange={(e) => {
+                            updateTitle(activeContentId, e.target.value)
+                        }}
+                        className="border-2 border-black"
                     />
-                )}
+                </div>
+                <div className="">
+                    {activeContent && (
+                        <Editor
+                            content={activeContent.content}
+                            updateContent={(newContent) =>
+                                updateContent(activeContentId, newContent)
+                            }
+                        />
+                    )}
+                </div>
             </div>
         </div>
     )
