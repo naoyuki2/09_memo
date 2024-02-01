@@ -1,6 +1,6 @@
 type Props = {
     bgColor: string
-    content: string
+    content: string | undefined
     onClick: () => void
 }
 

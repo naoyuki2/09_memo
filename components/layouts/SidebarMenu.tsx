@@ -19,7 +19,7 @@ const SidebarMenu = ({ contents, setActiveContentId, setContents }: Props) => {
                             <Button
                                 key={content.id}
                                 bgColor="bg-blue-100"
-                                content={content.id.toString()}
+                                content={content.title}
                                 onClick={() => setActiveContentId(content.id)}
                             />
                         )
@@ -33,6 +33,7 @@ const SidebarMenu = ({ contents, setActiveContentId, setContents }: Props) => {
                                 ...contents,
                                 {
                                     id: newId,
+                                    title: 'タイトル' + newId,
                                     content: '',
                                 },
                             ])
